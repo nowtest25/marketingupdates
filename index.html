@@ -1,0 +1,402 @@
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f9f9f9;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: block;
+    }
+    .header {
+        background-color: #0056b3;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        grid-column: span 2;
+        border-radius: 2.5%;
+    }
+    .header .logo-container {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header .operations-weekly {
+        flex: 1;
+    }
+    .header h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+    .logo {
+        width: 100px;
+        height: auto;
+    }
+    .section {
+        margin-top: 20px;
+        flex: none;
+        page-break-before: always;
+    }
+    .section h5 {
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .section ul li {
+        margin-bottom: 15px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        width: calc(100% - 30px);
+        box-sizing: border-box;
+    }
+    .section ul li::before {
+        content: "";
+        color: #4CAF50;
+        margin-right: 15px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .priority-list ul li::before {
+        content: "";
+    }
+
+    .action-items ul li::before {
+        content: "";
+    }
+
+    .updates ul li::before {
+        content: "";
+    }
+    .priority-list, .action-items, .updates {
+        height: 100%;
+    }
+    .combined-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+    }
+    .priority-list h5, .action-items h5, .updates h5 {
+        font-size: 18px;
+    }
+    .priority-list ul li::before, .action-items ul li::before, .updates ul li::before {
+        font-size: 18px;
+    }
+    .open-items ul li::before {
+        content: "";
+    }
+    .action-items ul, .priority-list ul, .updates ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .action-items ul li, .priority-list ul li, .updates ul li {
+        padding-left: 0;
+    }
+
+    .updates ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+    .action-items ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+    .priority-list ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+    .status-in-progress {
+        color: #ff4000; 
+    }
+    .status-in-business-user-confirmation {
+        color: #ff9d00; 
+    }
+    .status-in-review {
+        color: #007BFF; 
+    }
+    .status-datamigration {
+        color: #de2d2d; 
+    }
+
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #fff;
+        margin: 20px 0;
+    }
+    th {
+        background-color: #0056b3; 
+        color: #fff; 
+        text-align: center; 
+    }
+    td:nth-child(1), td:nth-child(2), td:nth-child(5) {
+        text-align: center;
+    }
+    td:nth-child(3) {
+        width: 40%; 
+    }
+    td:nth-child(4) {
+        width: 20%; 
+    }
+    td:nth-child(6), td:nth-child(7) {
+        width: 10%; 
+        text-align: center; 
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2; 
+    }
+    tr:nth-child(odd) {
+        background-color: #ffffff; 
+    }
+    td:nth-child(6) {
+        text-align: center;
+    }
+
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact; 
+            color-adjust: exact; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .container {
+            box-shadow: none; 
+            margin: 0; 
+            padding: 5px; 
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff; 
+            margin: 0; 
+        }
+        th, td {
+            border: 1px solid #000; 
+            padding: 3px; 
+            font-size: 10px; 
+        }
+        tr {
+            page-break-inside: avoid; 
+        }
+       
+        tr:nth-child(8) {
+            page-break-inside: avoid; 
+        }
+       
+        .no-print {
+            display: none; 
+        }
+        
+        h2, h5 {
+            margin: 2px 0; 
+        }
+        p {
+            margin: 2px 0; 
+        }
+       
+        .section {
+            page-break-after: avoid; 
+            margin-top: 10px; 
+        }
+      
+        .header {
+            background-color: #0056b3; 
+            color: #fff; 
+            padding: 10px; 
+            margin-bottom: 10px;
+        }
+        
+        table {
+            page-break-inside: avoid; 
+            margin-bottom: 10px; 
+        }
+    }
+
+    .section.open-items {
+        margin-top: 20px;
+        flex: none;
+        page-break-before: always; 
+    }
+
+    
+    .section.open-items table tbody tr td:nth-child(4) {
+        text-align: center; 
+    }
+    .priority-icon {
+        display: inline-block;
+        width: 30px; 
+        height: 30px; 
+        border-radius: 50%; 
+        background-color: #de4402; 
+        color: white;
+        text-align: center; 
+        line-height: 30px; 
+        font-weight: bold; 
+    }
+    .priority-icon2 {
+        display: inline-block;
+        width: 30px; 
+        height: 30px; 
+        border-radius: 50%; 
+        background-color: #f76121; 
+        color: white; 
+        text-align: center; 
+        line-height: 30px; 
+        font-weight: bold; 
+    }
+    .priority-icon3 {
+        display: inline-block;
+        width: 30px; 
+        height: 30px; 
+        border-radius: 50%; 
+        background-color: #d58768; 
+        color: white; 
+        text-align: center; 
+        line-height: 30px; 
+        font-weight: bold; 
+    }
+    .priority-icon4 {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%; 
+        background-color: #e09879; 
+        color: white;
+        text-align: center; 
+        line-height: 30px; 
+        font-weight: bold; 
+    }
+    .status-on-hold {
+        color: #ff4000; 
+        font-weight: bold;
+    }
+    .status-ticket-in-progress {
+        color: #007BFF;
+        font-weight: bold;
+    }
+    .status-business-user-confirmation {
+        color: #ff9d00; 
+        font-weight: bold;
+    }
+    .status-release-assigned {
+        color: #28a745; 
+        font-weight: bold;
+    }
+    .status-default {
+        color: #000; 
+    }
+</style>
+</style>
+
+<div class="container">
+    <div class="header">
+        <div class="logo-container">
+            <img src="NO_Image.png" alt="Logo" class="logo">
+        </div>
+        <div class="operations-weekly">
+            <h2>Marketing | Prioritized Issues List  - <span id="current-date"></span></h2>
+        </div>
+    </div>
+    <div class="section open-items">
+        <h5><span class="open-items-icon">⚠️</span> Open Issues</h5>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>System</th>
+                    <th>Issue Description</th>
+                    <th>Priority Level</th>
+                    <th>Current Status</th>
+                    <th>Release Version</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>311</td>
+                    <td>IRIS</td>
+                    <td>Add Dynamic SDP URLs to Location Sitemap</td>
+                    <td><span class="priority-icon">1</span></td>
+                    <td><span class="status-release-assigned"</span>Release Assigned</td>
+                    <td>IRIS_R_15.00.00</td>
+                </tr>
+                <tr>
+                    <td>312</td>
+                    <td>IRIS</td>
+                    <td>Old Sitemap Cleanup Instructions</td>
+                    <td><span class="priority-icon">1</span></td>
+                    <td><span class="status-release-assigned"</span>Release Assigned</td>
+                    <td>IRIS_R_15.00.00</td>
+                </tr>
+                <tr>
+                    <td>387</td>
+                    <td>IRIS</td>
+                    <td>Website Performance Optimization: Reducing Page Weight and Enhancing Load Speed for PPC Lander</td>
+                    <td><span class="priority-icon2">2</span></td>
+                    <td><span class="status-ticket-in-progress"</span>Ticket in Progress</td>
+                    <td>NA</td>
+                </tr>
+                <tr>
+                    <td>372</td>
+                    <td>IRIS</td>
+                    <td>Store Hours Mismatch Between PPC Landing Page and Website Store Detail Page</td>
+                    <td><span class="priority-icon2">2</span></td>
+                    <td><span class="status-release-assigned"</span>Release Assigned</td>
+                        <td>IRIS_R_15.00.00</td>
+                </tr>
+                <tr>
+                    <td>377</td>
+                    <td>IRIS</td>
+                    <td>Enhancing PPC Pages: Dynamic Banner Integration</td>
+                    <td><span class="priority-icon2">2</span></td>
+                    <td><span class="status-on-hold"</span>On Hold</td>
+                    <td>NA</td>
+                </tr>
+
+                <tr>
+                    <td>282</td>
+                    <td>IRIS</td>
+                    <td>Issue with Reorders from My Account for Zeus Orders – Error Encountered</td>
+                    <td><span class="priority-icon2">2</span></td>
+                    <td><span class="status-on-hold"</span>On Hold</td>
+                    <td>NA</td>
+                </tr>
+                <tr>
+                    <td>249</td>
+                    <td>IRIS</td>
+                    <td>Request to Implement Email Template in IRIS for Emarsys Data Deletion Confirmation</td>
+                    <td><span class="priority-icon3">3</span></td>
+                    <td><span class="status-release-assigned"</span>Release Assigned</td>
+                    <td>IRIS_R_17.00.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="https://nowoptics.sharepoint.com/sites/CAR/Lists/IRIS%20Issue%20%20Enhancement%20Tracker/AllItems.aspx" target="_blank">
+                <button style="padding: 10px 20px; font-size: 16px; background-color: #0056b3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Go to Issues Tracker
+                </button>
+            </a>
+        </div>
+        <p style="font-weight: bold; background-color: yellow; padding: 10px; text-align: center;">Please be advised this is a preliminary list.</p>
+    </div>
+
+<script>
+    document.getElementById("current-date").innerHTML = new Date().toLocaleDateString();
+</script>
